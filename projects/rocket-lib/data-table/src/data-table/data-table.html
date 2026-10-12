@@ -1,1 +1,24 @@
-<p>data-table works!</p>
+<table cdk-table [dataSource]="dataSource">
+  <ng-container cdkColumnDef="position">
+    <th cdk-header-cell *cdkHeaderCellDef>#</th>
+    <td cdk-cell *cdkCellDef="let row">{{ row.position }}</td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="name">
+    <th cdk-header-cell *cdkHeaderCellDef>Name</th>
+    <td cdk-cell *cdkCellDef="let row">{{ row.name }}</td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="weight">
+    <th cdk-header-cell *cdkHeaderCellDef>Weight</th>
+    <td cdk-cell *cdkCellDef="let row">{{ row.weight }}</td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="symbol">
+    <th cdk-header-cell *cdkHeaderCellDef>Symbol</th>
+    <td cdk-cell *cdkCellDef="let row">{{ row.symbol }}</td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+</table>
