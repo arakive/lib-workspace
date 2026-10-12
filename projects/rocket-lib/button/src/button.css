@@ -1,0 +1,72 @@
+:host {
+  --rocket-bg: #fff;
+  --rocket-text: #0f0f1a;
+  --rocket-radius: 12px;
+  --rocket-padding: 12px 28px;
+
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: var(--rocket-padding);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--rocket-text);
+
+  background-color: var(--rocket-bg);
+  border: 2px solid transparent;
+  border-radius: var(--rocket-radius);
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+:host::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    80px circle at var(--mouse-x) var(--mouse-y),
+    color-mix(in srgb, var(--rocket-color-1) 45%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+:host(:hover)::before {
+  opacity: 1;
+}
+
+:host(:hover) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px -6px var(--rocket-color-1),
+    0 6px 20px -6px var(--rocket-color-2);
+}
+
+:host(:active) {
+  transform: translateY(0) scale(0.97);
+  box-shadow:
+    0 3px 10px -4px var(--rocket-color-1),
+    0 3px 10px -4px var(--rocket-color-2);
+}
+
+:host(:focus-visible) {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--rocket-color-1) 40%, transparent);
+}

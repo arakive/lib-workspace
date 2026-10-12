@@ -1,0 +1,14 @@
+:host {
+  --rocket-text: #0f0f1a;
+  --rocket-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  border-radius: var(--rocket-radius);
+  overflow: hidden;
+}
+
+.card-title {
+  border-bottom: 2px solid transparent;
+}

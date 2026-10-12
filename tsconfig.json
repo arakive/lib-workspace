@@ -11,6 +11,10 @@
     "isolatedModules": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "paths": {
+      "rocket-lib": ["./dist/rocket-lib"],
+      "rocket-lib/*": ["./dist/rocket-lib/*"]
+    },
     "target": "ES2022",
     "module": "preserve"
   },
@@ -19,5 +23,19 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/rocket-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/rocket-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/playground/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/playground/tsconfig.spec.json"
+    }
+  ]
 }

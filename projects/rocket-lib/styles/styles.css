@@ -1,0 +1,11 @@
+.border-gradient {
+  --rocket-color-1: #6366f1;
+  --rocket-color-2: #ec4899;
+  --rocket-bg: #fff;
+
+  background-image:
+    linear-gradient(var(--rocket-bg), var(--rocket-bg)),
+    linear-gradient(135deg, var(--rocket-color-1), var(--rocket-color-2));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
