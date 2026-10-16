@@ -1,4 +1,4 @@
-<table cdk-table [dataSource]="dataSource">
+<table cdk-table [dataSource]="dataSource()">
   <ng-container cdkColumnDef="position">
     <th cdk-header-cell *cdkHeaderCellDef>#</th>
     <td cdk-cell *cdkCellDef="let row">{{ row.position }}</td>
