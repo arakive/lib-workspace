@@ -1,24 +1,53 @@
-<table cdk-table [dataSource]="dataSource()">
+<table cdk-table [dataSource]="dataSource()" multiTemplateDataRows>
   <ng-container cdkColumnDef="position">
     <th cdk-header-cell *cdkHeaderCellDef>#</th>
-    <td cdk-cell *cdkCellDef="let row">{{ row.position }}</td>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="content-container">{{ row.position }}</div>
+    </td>
   </ng-container>
 
   <ng-container cdkColumnDef="name">
     <th cdk-header-cell *cdkHeaderCellDef>Name</th>
-    <td cdk-cell *cdkCellDef="let row">{{ row.name }}</td>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="content-container">{{ row.name }}</div>
+    </td>
   </ng-container>
 
   <ng-container cdkColumnDef="weight">
     <th cdk-header-cell *cdkHeaderCellDef>Weight</th>
-    <td cdk-cell *cdkCellDef="let row">{{ row.weight }}</td>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="content-container">{{ row.weight }}</div>
+    </td>
   </ng-container>
 
   <ng-container cdkColumnDef="symbol">
     <th cdk-header-cell *cdkHeaderCellDef>Symbol</th>
-    <td cdk-cell *cdkCellDef="let row">{{ row.symbol }}</td>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="content-container">{{ row.symbol }}</div>
+    </td>
   </ng-container>
 
   <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
   <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
 </table>
+@if (!noPagination()) {
+  <div class="flex items-center h-12 px-4 bg-slate-200">
+    <div class="flex gap-1 ml-auto">
+      <button
+        class="px-2 rounded-md border border-gray-400 cursor-pointer bg-white"
+        (click)="page.update((prev) => prev - 1)"
+        [disabled]="page() === 1"
+      >
+        <
+      </button>
+      <p>{{ page() }} of {{ pagesCount() }}</p>
+      <button
+        class="px-2 rounded-md border border-gray-400 cursor-pointer bg-white"
+        (click)="page.update((prev) => prev + 1)"
+        [disabled]="page() >= pagesCount()"
+      >
+        >
+      </button>
+    </div>
+  </div>
+}

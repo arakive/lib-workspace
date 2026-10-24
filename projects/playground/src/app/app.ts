@@ -5,6 +5,7 @@ import { RocketCard } from 'rocket-lib/card';
 import { GetDataSource, RocketDataTable } from 'rocket-lib/data-table';
 import { of } from 'rxjs';
 import { ELEMENT_DATA } from './mocks/mocks';
+import { PeriodicElement } from './models/periodic-element.interface';
 
 @Component({
   imports: [RouterOutlet, RocketButton, RocketCard, RocketDataTable],
@@ -15,5 +16,7 @@ import { ELEMENT_DATA } from './mocks/mocks';
 export class App {
   protected readonly title = signal('playground');
 
-  protected readonly dataSource = new GetDataSource(() => of(ELEMENT_DATA));
+  protected readonly dataSource = new GetDataSource<PeriodicElement>(() =>
+    of({ records: ELEMENT_DATA, totalRecords: ELEMENT_DATA.length }),
+  );
 }

@@ -1,3 +1,6 @@
+@import 'tailwindcss';
+@source "../**/*.{html,ts}";
+
 .border-gradient {
   --rocket-color-1: #6366f1;
   --rocket-color-2: #ec4899;

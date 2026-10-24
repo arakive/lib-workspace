@@ -1,7 +1,43 @@
+:host {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
 table {
   width: 100%;
+  padding: 1rem 1rem 0 1rem;
 }
 
 th {
   text-align: left;
+}
+
+.cdk-table {
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.content-container {
+  border-top: 1px solid rgb(125, 205, 221);
+  border-bottom: 1px solid rgb(125, 205, 221);
+  padding: 8px;
+}
+
+tr > td:first-child > div {
+  border-left: 1px solid rgb(125, 205, 221);
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+tr > td:last-child > div {
+  border-right: 1px solid rgb(125, 205, 221);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.cdk-row {
+  padding: 0.25rem;
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: default;
 }
