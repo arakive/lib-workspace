@@ -1,6 +1,13 @@
 import { CdkTableModule } from '@angular/cdk/table';
-import { booleanAttribute, Component, computed, input, signal } from '@angular/core';
+import { booleanAttribute, Component, computed, input, linkedSignal, signal } from '@angular/core';
 import { GetDataSource } from '../dataSource';
+
+export type ColumnKey<T> = Extract<keyof T, string>;
+
+export interface ColDef<T> {
+  key: ColumnKey<T>;
+  label?: string;
+}
 
 @Component({
   imports: [CdkTableModule],
@@ -9,9 +16,10 @@ import { GetDataSource } from '../dataSource';
   templateUrl: './data-table.html',
 })
 export class RocketDataTable<T> {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = input.required<GetDataSource<T>>();
   noPagination = input(false, { transform: booleanAttribute });
+  columns = input.required<ColDef<T>[]>();
+  displayedColumns = linkedSignal(() => this.columns().map((col) => col.key));
   protected readonly page = signal(1);
   protected readonly pageSize = signal(25);
   protected readonly totalRecords = computed(() => this.dataSource().totalRecords());

@@ -1,35 +1,16 @@
 <table cdk-table [dataSource]="dataSource()" multiTemplateDataRows>
-  <ng-container cdkColumnDef="position">
-    <th cdk-header-cell *cdkHeaderCellDef>#</th>
-    <td cdk-cell *cdkCellDef="let row">
-      <div class="content-container">{{ row.position }}</div>
-    </td>
-  </ng-container>
-
-  <ng-container cdkColumnDef="name">
-    <th cdk-header-cell *cdkHeaderCellDef>Name</th>
-    <td cdk-cell *cdkCellDef="let row">
-      <div class="content-container">{{ row.name }}</div>
-    </td>
-  </ng-container>
-
-  <ng-container cdkColumnDef="weight">
-    <th cdk-header-cell *cdkHeaderCellDef>Weight</th>
-    <td cdk-cell *cdkCellDef="let row">
-      <div class="content-container">{{ row.weight }}</div>
-    </td>
-  </ng-container>
-
-  <ng-container cdkColumnDef="symbol">
-    <th cdk-header-cell *cdkHeaderCellDef>Symbol</th>
-    <td cdk-cell *cdkCellDef="let row">
-      <div class="content-container">{{ row.symbol }}</div>
-    </td>
-  </ng-container>
-
-  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+  @for (column of columns(); track $index) {
+    <ng-container [cdkColumnDef]="column.key">
+      <th cdk-header-cell *cdkHeaderCellDef>{{ column.label || column.key }}</th>
+      <td cdk-cell *cdkCellDef="let row">
+        <div class="content-container">{{ row[column.key] }}</div>
+      </td>
+    </ng-container>
+  }
+  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns()"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns()"></tr>
 </table>
+
 @if (!noPagination()) {
   <div class="flex items-center h-12 px-4 bg-slate-200">
     <div class="flex gap-1 ml-auto">
